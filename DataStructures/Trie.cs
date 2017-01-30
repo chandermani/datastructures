@@ -16,7 +16,8 @@ public class Trie<T>
         TrieNode<T> node = this.Root;
         for (int i = 0; i < key.Length; i++)
         {
-            node = node.AddChild(key[i]);
+            var child = node.GetChild(key[i]);
+            node = child == null ? node.AddChild(key[i]) : child;
         }
 
         node.Data = data;
@@ -64,10 +65,7 @@ public class TrieNode<T>
 
     public TrieNode<T> AddChild(char key)
     {
-        if (this.Children[this.KeyIndex(key)] == null)
-        {
-            this.Children[this.KeyIndex(key)] = new TrieNode<T>(key);
-        }
+        this.Children[this.KeyIndex(key)] = new TrieNode<T>(key);
         return Children[this.KeyIndex(key)];
     }
 
