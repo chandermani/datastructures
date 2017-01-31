@@ -8,7 +8,7 @@ public class Trie<T>
 
     public Trie()
     {
-        this.Root = new TrieNode<T>('-');
+        this.Root = new TrieNode<T>();
     }
 
     public void Add(string key, T data)
@@ -53,9 +53,8 @@ public class Trie<T>
 public class TrieNode<T>
 {
     private const int CHARS = 26;
-    public TrieNode(char key)
+    public TrieNode()
     {
-        this.Key = key;
         this.Children = new TrieNode<T>[CHARS];
     }
 
@@ -65,7 +64,7 @@ public class TrieNode<T>
 
     public TrieNode<T> AddChild(char key)
     {
-        this.Children[this.KeyIndex(key)] = new TrieNode<T>(key);
+        this.Children[this.KeyIndex(key)] = new TrieNode<T>();
         return Children[this.KeyIndex(key)];
     }
 
